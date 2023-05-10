@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test Layout</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+body {
+    font-size: 100%;
+    height: 100%;
+}
+
+
+.courseCard {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: auto; /* the browser calculates the width */
+  margin: 40px; /* space outside card to separate cards */
+  border: 2px solid #9A1D2E; /* border of card */
+  padding: 2px 16px; /* spacing inside card around text */
+  border-radius: 25px; /* rounded corners */
+}
+
+.courseCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  background-color: #9A1D2E;
+  color: white;
+}
+
+#courseTable {
+  overflow-y: scroll;
+  height: 50vh;
+}
+</style>
+</head>
+<body onload="buildCourseTable()">
+
+<h2 style="text-align:center">Test Cards</h2>
+
+<div id="courseTable">
+<!-- JavaScript code will put stuff in this area -->
+</div> 
+
+<script>
+function buildCourseTable()
+{
+    let table = document.getElementById("courseTable");
+    
+    //Exeter has 488 courses
+    for (let i=0; i<488; i++) {
+        let mycard = document.createElement("div");
+        mycard.setAttribute("class","courseCard");
+        
+        let h1 = document.createElement("h1");
+        h1.innerText = "CLS " + i;
+        
+        let p = document.createElement("p");
+        p.innerText = "Name of class " + i;
+        
+        let h3 = document.createElement("h3");
+        h3.innerText = "Last reviewer of class " + i + " review date";
+        
+        mycard.appendChild(h1);
+        mycard.appendChild(p);
+        mycard.appendChild(h3);
+        mycard.addEventListener("click", function() { clickedOn(h1.innerText); });   
+        
+        table.appendChild(mycard);
+    }
+}
+</script>
+
+<script>
+function clickedOn(x)
+{
+    alert("Load course page with reviews for " + x);
+}
+</script>
+
+</body>
+</html> 
